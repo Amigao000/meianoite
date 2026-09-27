@@ -1,0 +1,30 @@
+# Dependências
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Build de produção do Next.js
+/.next/
+/out/
+
+# Variáveis de ambiente locais e segredos (NUNCA SUBIR)
+.env*.local
+.env
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Logs e depuração
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Sistema Operacional e Editores
+.DS_Store
+*.pem
+.vscode/
+.idea/
+Thumbs.db

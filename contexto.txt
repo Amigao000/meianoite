@@ -1,0 +1,79 @@
+# CONTEXTO DO PROJETO: CONFIGURADOR 3D DE UNIFORMES ESPORTIVOS
+
+## 1. Visão Geral
+Aplicação web interativa para configuração e customização em 3D de uniformes esportivos (camisas, calções e meiões). O usuário pode alterar cores em tempo real, aplicar escudos e logomarcas de patrocinadores, selecionar itens do kit, escolher planos/pacotes e solicitar orçamento com gravação direta no Supabase.
+
+---
+
+## 2. Stack Tecnológica
+- **Framework Front-end**: Next.js 14+ (App Router)
+- **Linguagem**: TypeScript
+- **Estilização**: Tailwind CSS + Lucide React (ícones)
+- **Renderização 3D**: Three.js, React Three Fiber (`@react-three/fiber`), Drei (`@react-three/drei`)
+- **Gerenciamento de Estado**: Zustand
+- **Banco de Dados & Storage**: Supabase (PostgreSQL + Storage para upload de logos/escudos)
+- **Hospedagem / CI-CD**: Vercel
+
+---
+
+## 3. Arquitetura Planejada
+
+### 3.1. Estrutura de Diretórios
+```
+projeto meia noite/
+├── .env.local                  # Variáveis de ambiente protegidas (Supabase URL, Keys, etc.)
+├── contexto.txt                # Documentação técnica viva do estado e arquitetura do projeto
+├── INSTRUCOES_MANUAIS.txt      # Guia passo a passo descomplicado para o usuário não-técnico
+├── package.json                # Dependências e scripts
+├── tsconfig.json               # Configurações TypeScript
+├── tailwind.config.ts          # Configurações do Tailwind CSS
+├── postcss.config.mjs          # Plugins PostCSS
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx          # Layout raiz (fontes, metadados)
+│   │   ├── page.tsx            # Página principal com grid em 3 colunas + rodapé
+│   │   └── globals.css         # Estilos globais e tokens Tailwind
+│   ├── components/
+│   │   ├── 3d/
+│   │   │   ├── SceneViewer.tsx     # Canvas Three.js com OrbitControls, iluminação e câmera
+│   │   │   ├── UniformModel.tsx    # Modelo 3D da camisa/calção/meião com materiais dinâmicos
+│   │   │   └── DecalLayer.tsx      # Projeção de logos e patrocinadores (peito, manga, costas)
+│   │   ├── controls/
+│   │   │   ├── ColorPickerGroup.tsx # Seletores de cores (Predominante, Secundária, Alternativa, Marca, Número)
+│   │   │   ├── LogoUpload.tsx       # Componentes de upload de escudo e patrocinadores
+│   │   │   └── ModelOptions.tsx     # Seleção de tipo de gola e mangas
+│   │   ├── summary/
+│   │   │   ├── KitSelector.tsx      # Checkboxes de peças do kit (Camisa, Calção, Meião)
+│   │   │   ├── OrderSummary.tsx     # Resumo e botão "Adicionar ao Orçamento"
+│   │   │   └── BudgetModal.tsx      # Modal para dados de contato do cliente
+│   │   └── packages/
+│   │       └── PackageComparison.tsx # Rodapé com tabela de planos (Prata, Ouro, Champions, Platinum)
+│   ├── store/
+│   │   └── useUniformStore.ts   # Zustand Store contendo estado completo do uniforme
+│   └── lib/
+│       ├── supabase.ts          # Cliente Supabase seguro inicializado via variáveis de ambiente
+│       └── types.ts             # Tipagem do modelo, orçamento e estado
+```
+
+---
+
+## 4. Estado Atual das Implementações
+- [x] Node.js LTS e npm instalados no ambiente do sistema.
+- [x] Definição de Arquitetura e regras de segurança (Sem chaves expostas no código).
+- [x] Criação de `contexto.txt` e `INSTRUCOES_MANUAIS.txt`.
+- [x] Configuração de arquivo `.env.local` preparado com variáveis do Supabase.
+- [x] Instalação de dependências concluída (`npm install`) e build compilado com 100% de sucesso.
+- [x] Estrutura completa de diretórios e arquivos base Next.js com App Router.
+- [x] Configuração do Tailwind CSS e tipagens TypeScript.
+- [x] Criação da Store Zustand (`useUniformStore.ts`) com valores padrão.
+- [x] Construção do Layout UI responsivo dividido nas 3 colunas (Controles, Canvas 3D Placeholder, Resumo/Checkout) e Rodapé com Tabela de Pacotes.
+- [x] Servidor de desenvolvimento rodando com sucesso em `http://localhost:3000`.
+
+---
+
+## 5. Próximos Passos
+1. Usuário configurar chaves do Supabase no arquivo `.env.local`.
+2. Implementação do Canvas 3D e cena Three.js inicial com `@react-three/fiber` e `@react-three/drei`.
+3. Inclusão dos modelos 3D (.glb / malhas procedurais de uniforme esportivo) e projeção de decals.
+4. Conexão real da persistência do orçamento com tabelas e storage no Supabase.
+

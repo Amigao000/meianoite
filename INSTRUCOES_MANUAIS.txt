@@ -1,0 +1,67 @@
+================================================================================
+GUIA DE INSTRUÇÕES MANUAIS (PASSO A PASSO PARA O USUÁRIO)
+Projeto: Configurador de Produtos 3D para Uniformes Esportivos
+================================================================================
+
+Olá! Este arquivo foi feito especialmente para você. Siga cada passo com calma.
+Você só precisa copiar e colar o que for indicado.
+
+--------------------------------------------------------------------------------
+PASSO 1: NODE.JS & DEPENDÊNCIAS (JÁ INSTALADOS AUTOMATICAMENTE ✅)
+--------------------------------------------------------------------------------
+O Node.js (v24 LTS) e todas as dependências do projeto (npm install) JÁ FORAM 
+instalados diretamente no seu computador pelo assistente!
+Você não precisa instalar o Node.js manualmente. Pode seguir para o Passo 2.
+
+
+--------------------------------------------------------------------------------
+PASSO 2: CRIAR CONTAS GRATUITAS NECESSÁRIAS
+--------------------------------------------------------------------------------
+
+1. CONTA SUPABASE (Banco de dados e armazenamento das fotos dos uniformes):
+   - Acesse: https://supabase.com/
+   - Clique em "Sign Up" e crie uma conta gratuita (pode usar seu login do GitHub ou e-mail).
+   - Clique em "New Project" (Novo Projeto).
+   - Escolha um nome (ex: "uniformes-3d") e crie uma senha para o banco de dados (guarde essa senha!).
+   - Quando o projeto abrir, vá na engrenagem no canto esquerdo (Project Settings) -> "API".
+   - Lá você verá dois dados importantes:
+     * Project URL
+     * Project API Keys (anon / public)
+   - Copie esses dois valores para colar no arquivo `.env.local` (ver Passo 3).
+
+2. CONTA VERCEL (Para colocar seu site na internet depois):
+   - Acesse: https://vercel.com/
+   - Crie uma conta gratuita com seu GitHub ou e-mail.
+   - Deixe criada; nós a utilizaremos quando o projeto estiver pronto para publicar.
+
+--------------------------------------------------------------------------------
+PASSO 3: CONFIGURAR AS CHAVES NO ARQUIVO .env.local
+--------------------------------------------------------------------------------
+1. Na raiz do projeto, abra o arquivo chamado `.env.local`
+2. Você verá duas linhas assim:
+   NEXT_PUBLIC_SUPABASE_URL=
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+3. Cole as informações que você pegou lá no Supabase após o sinal de "=", ficando assim:
+   NEXT_PUBLIC_SUPABASE_URL=https://seuidaqui.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anon-gigante-aqui
+
+4. Salve o arquivo (Ctrl + S). 
+   *OBS: NUNCA compartilhe esse arquivo ou envie para a internet, ele protege seu banco!
+
+--------------------------------------------------------------------------------
+PASSO 4: INSTALAR DEPENDÊNCIAS DO PROJETO E RODAR
+--------------------------------------------------------------------------------
+Com o Node.js já instalado (Passo 1):
+1. Abra o terminal no seu editor (ou PowerShell dentro da pasta do projeto: c:\projetos\projeto meia noite)
+2. Digite o seguinte comando para instalar tudo o que o projeto precisa:
+   npm install
+
+3. Após terminar a instalação, ligue o servidor de testes:
+   npm run dev
+
+4. Abra o seu navegador de internet (Google Chrome, Edge, etc.) e acesse:
+   http://localhost:3000
+
+Você verá o Configurador 3D já funcionando com a interface dividida em 3 colunas e a tabela de pacotes no rodapé!
+================================================================================
