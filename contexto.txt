@@ -62,12 +62,16 @@ projeto meia noite/
 - [x] Definição de Arquitetura e regras de segurança (Sem chaves expostas no código).
 - [x] Criação de `contexto.txt` e `INSTRUCOES_MANUAIS.txt`.
 - [x] Configuração de arquivo `.env.local` preparado com variáveis do Supabase.
+- [x] Arquivo `.gitignore` configurado protegendo segredos e dependências.
 - [x] Instalação de dependências concluída (`npm install`) e build compilado com 100% de sucesso.
 - [x] Estrutura completa de diretórios e arquivos base Next.js com App Router.
 - [x] Configuração do Tailwind CSS e tipagens TypeScript.
 - [x] Criação da Store Zustand (`useUniformStore.ts`) com valores padrão.
 - [x] Construção do Layout UI responsivo dividido nas 3 colunas (Controles, Canvas 3D Placeholder, Resumo/Checkout) e Rodapé com Tabela de Pacotes.
 - [x] Servidor de desenvolvimento rodando com sucesso em `http://localhost:3000`.
+- [x] Git inicializado, branch `main` configurada, commit raiz criado e conectado ao remote `https://github.com/Amigao000/meianoite.git`.
+- [x] `git push` executado com sucesso e repositório sincronizado no GitHub (sem chaves nem segredos expostos).
+
 
 ---
 
