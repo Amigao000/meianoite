@@ -71,13 +71,15 @@ projeto meia noite/
 - [x] Servidor de desenvolvimento rodando com sucesso em `http://localhost:3000`.
 - [x] Git inicializado, branch `main` configurada, commit raiz criado e conectado ao remote `https://github.com/Amigao000/meianoite.git`.
 - [x] `git push` executado com sucesso e repositório sincronizado no GitHub (sem chaves nem segredos expostos).
-
+- [x] Modelo 3D da camiseta (`shirt_body.gltf` + binário) acoplado e centralizado na cena.
+- [x] Motor 3D implementado com React Three Fiber (`@react-three/fiber` + `@react-three/drei`), iluminação de estúdio e OrbitControls 360°.
+- [x] Pintura e materiais PBR em tempo real conectados ao estado Zustand (corpo, gola e mangas reativos).
 
 ---
 
 ## 5. Próximos Passos
-1. Usuário configurar chaves do Supabase no arquivo `.env.local`.
-2. Implementação do Canvas 3D e cena Three.js inicial com `@react-three/fiber` e `@react-three/drei`.
-3. Inclusão dos modelos 3D (.glb / malhas procedurais de uniforme esportivo) e projeção de decals.
-4. Conexão real da persistência do orçamento com tabelas e storage no Supabase.
+1. Implementação da aplicação de estampas e logos via Decals (escudo no peito e patrocinadores).
+2. Modelagem ou peças complementares do kit (calção e meião).
+3. Conexão real com banco e storage do Supabase para persistir orçamentos.
+
 
