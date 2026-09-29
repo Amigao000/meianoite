@@ -6,72 +6,56 @@ import * as THREE from 'three';
 import { useUniformStore } from '@/store/useUniformStore';
 
 export default function JerseyModel() {
-  const { scene } = useGLTF('/models/shirt_body.gltf');
+  const { scene } = useGLTF('/models/jersey.glb');
   const { colors } = useUniformStore();
 
-  // Materiais reativos de alta fidelidade
+  // Materiais PBR esportivos reativos
   const materials = useMemo(() => {
     return {
-      bodyFront: new THREE.MeshStandardMaterial({
+      body: new THREE.MeshStandardMaterial({
         color: new THREE.Color(colors.primary),
-        roughness: 0.5,
+        roughness: 0.55,
         metalness: 0.05,
         side: THREE.DoubleSide,
       }),
-      bodyBack: new THREE.MeshStandardMaterial({
-        color: new THREE.Color(colors.primary),
-        roughness: 0.5,
-        metalness: 0.05,
-        side: THREE.DoubleSide,
-      }),
-      collar: new THREE.MeshStandardMaterial({
+      collarAndTrim: new THREE.MeshStandardMaterial({
         color: new THREE.Color(colors.secondary),
-        roughness: 0.6,
-        metalness: 0.05,
-        side: THREE.DoubleSide,
-      }),
-      sleeves: new THREE.MeshStandardMaterial({
-        color: new THREE.Color(colors.primary),
-        roughness: 0.5,
+        roughness: 0.65,
         metalness: 0.05,
         side: THREE.DoubleSide,
       }),
     };
   }, [colors.primary, colors.secondary]);
 
+  // Atualiza cores dinamicamente sem recriar os materiais
   useEffect(() => {
-    materials.bodyFront.color.set(colors.primary);
-    materials.bodyBack.color.set(colors.primary);
-    materials.collar.color.set(colors.secondary);
-    materials.sleeves.color.set(colors.primary);
+    materials.body.color.set(colors.primary);
+    materials.collarAndTrim.color.set(colors.secondary);
   }, [colors, materials]);
 
   const clonedScene = useMemo(() => {
     const clone = scene.clone(true);
 
-    // Mapeia os materiais nas malhas corretas da camisa
+    // Mapeamento e aplicação dos materiais PBR nas malhas da camisa
     clone.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
         mesh.castShadow = true;
         mesh.receiveShadow = true;
 
-        const name = (mesh.name || '').toLowerCase();
-        const parentName = (mesh.parent?.name || '').toLowerCase();
+        // Partes com detalhes/gola/costuras recebem a cor secundária
+        const matName = (mesh.material as THREE.Material)?.name || '';
+        const meshName = (mesh.name || '').toLowerCase();
 
-        if (name.includes('ribbing') || parentName.includes('ribbing')) {
-          mesh.material = materials.collar;
-        } else if (name.includes('sleeve') || parentName.includes('sleeve')) {
-          mesh.material = materials.sleeves;
-        } else if (name.includes('back') || parentName.includes('back')) {
-          mesh.material = materials.bodyBack;
+        if (matName.includes('Material109373') || meshName.includes('material109373')) {
+          mesh.material = materials.collarAndTrim;
         } else {
-          mesh.material = materials.bodyFront;
+          mesh.material = materials.body;
         }
       }
     });
 
-    // Calcula o Bounding Box EXCLUSIVAMENTE das malhas de tecido
+    // Calcula Bounding Box preciso para centralizar perfeitamente no ponto de pivô da câmera
     const box = new THREE.Box3();
     clone.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
@@ -84,15 +68,16 @@ export default function JerseyModel() {
     box.getCenter(center);
     box.getSize(size);
 
-    // Centraliza o modelo no ponto de pivô da câmera
+    // Centraliza o modelo
     clone.position.x = -center.x;
     clone.position.y = -center.y;
     clone.position.z = -center.z;
 
-    // Escala proporcionalmente para preencher a tela perfeitamente
+    // Normaliza escala para enquadrar na câmera
     const maxDim = Math.max(size.x, size.y, size.z);
     if (maxDim > 0) {
-      const scale = 3.0 / maxDim;
+      const targetHeight = 2.8;
+      const scale = targetHeight / maxDim;
       clone.scale.set(scale, scale, scale);
     }
 
@@ -102,4 +87,4 @@ export default function JerseyModel() {
   return <primitive object={clonedScene} />;
 }
 
-useGLTF.preload('/models/shirt_body.gltf');
+useGLTF.preload('/models/jersey.glb');

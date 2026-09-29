@@ -71,9 +71,12 @@ projeto meia noite/
 - [x] Servidor de desenvolvimento rodando com sucesso em `http://localhost:3000`.
 - [x] Git inicializado, branch `main` configurada, commit raiz criado e conectado ao remote `https://github.com/Amigao000/meianoite.git`.
 - [x] `git push` executado com sucesso e repositório sincronizado no GitHub (sem chaves nem segredos expostos).
-- [x] Modelo 3D da camiseta (`shirt_body.gltf` + binário) acoplado e centralizado na cena.
-- [x] Motor 3D implementado com React Three Fiber (`@react-three/fiber` + `@react-three/drei`), iluminação de estúdio e OrbitControls 360°.
-- [x] Pintura e materiais PBR em tempo real conectados ao estado Zustand (corpo, gola e mangas reativos).
+- [x] Novo Modelo 3D de alta definição (`short_sleeve_t-_shirt.glb` -> `public/models/jersey.glb`) integrado e acoplado com sucesso.
+- [x] Otimização e centralização de câmera com Bounding Box dinâmico calibrado.
+- [x] Materiais PBR esportivos reativos ao estado Zustand (Cor predominante no tecido e Cor secundária na gola/detalhes).
+- [x] Pasta `referencia/` enriquecida com: gravação do simulador (MP4), página de referência completa (HTML) e screenshot de referência (Capturar.PNG).
+
+
 
 ---
 
