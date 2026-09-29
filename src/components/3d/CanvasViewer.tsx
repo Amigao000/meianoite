@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, ContactShadows, Environment, Float, Loader } from '@react-three/drei';
+import { OrbitControls, ContactShadows, Environment } from '@react-three/drei';
 import JerseyModel from './JerseyModel';
 import { Loader2 } from 'lucide-react';
 
@@ -22,44 +22,43 @@ export default function CanvasViewer() {
       <Suspense fallback={<CanvasLoader />}>
         <Canvas
           shadows
-          camera={{ position: [0, 0, 4.5], fov: 45 }}
+          camera={{ position: [0, 0, 3.8], fov: 42 }}
           className="w-full h-full cursor-grab active:cursor-grabbing"
           gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
         >
           {/* Iluminação de Estúdio Esportivo */}
-          <ambientLight intensity={0.7} />
+          <ambientLight intensity={0.8} />
           <directionalLight
-            position={[5, 8, 5]}
-            intensity={1.2}
+            position={[4, 6, 4]}
+            intensity={1.4}
             castShadow
             shadow-mapSize={1024}
             shadow-bias={-0.0001}
           />
-          <directionalLight position={[-5, 5, -5]} intensity={0.6} />
-          <directionalLight position={[0, -5, 2]} intensity={0.3} />
+          <directionalLight position={[-4, 4, -4]} intensity={0.7} />
+          <directionalLight position={[0, -4, 2]} intensity={0.4} />
 
           {/* Ambiente HDR sutil para reflexos realistas */}
           <Environment preset="city" />
 
-          {/* Modelo da Camisa com flutuação sutil de estúdio */}
-          <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
-            <JerseyModel />
-          </Float>
+          {/* Modelo da Camiseta perfeitamente centralizado */}
+          <JerseyModel />
 
           {/* Sombra de Contato Suave no chão */}
           <ContactShadows
-            position={[0, -1.8, 0]}
-            opacity={0.6}
-            scale={6}
-            blur={2}
-            far={4}
+            position={[0, -1.3, 0]}
+            opacity={0.65}
+            scale={5}
+            blur={1.8}
+            far={3}
           />
 
-          {/* Controles de Câmera 360° */}
+          {/* Controles de Câmera 360° com mira no centro exato [0, 0, 0] */}
           <OrbitControls
+            target={[0, 0, 0]}
             enablePan={false}
-            minDistance={2.5}
-            maxDistance={7}
+            minDistance={2.0}
+            maxDistance={6.0}
             minPolarAngle={Math.PI / 4}
             maxPolarAngle={Math.PI / 1.8}
             makeDefault
